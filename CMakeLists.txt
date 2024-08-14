@@ -1,9 +1,11 @@
 # Copyright (c) 2015 - 2016. Tianwei Shen (shentianweipku@gmail.com)
 # Hong Kong University of Science and Technology (HKUST)
 
-cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)  # newest gflags needs 2.8.12
+cmake_minimum_required(VERSION 3.9)
 
 project(libvot C CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
 if(POLICY CMP0042)
     cmake_policy(SET CMP0042 NEW) # MACOSX_RPATH is enabled by default.
@@ -42,7 +44,7 @@ endif()
 
 # Additional cmake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/scripts/cmake)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -g -pipe -march=native -mtune=native -mfpmath=sse")
 
 # by default build in release mode
@@ -117,6 +119,7 @@ find_package(gflags REQUIRED)
 add_definitions(-DLIBVOT_USE_GFLAGS)
 find_package(glog REQUIRED)
 add_definitions(-DLIBVOT_USE_GLOG)
+add_compile_definitions(GLOG_USE_GLOG_EXPORT)
 
 # Setup eigen3
 find_package(Eigen3 REQUIRED)
