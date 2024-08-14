@@ -15,7 +15,7 @@
 #include "opencv2/core/core.hpp"
 #include "opencv2/features2d/features2d.hpp"
 #include "opencv2/highgui/highgui.hpp"
-#include "opencv2/nonfree/features2d.hpp"
+#include "opencv2/features2d.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #endif
 
@@ -62,8 +62,8 @@ int main(int argc, char **argv)
 	cv::Mat img_1, img_2;
 	if(is_image_exist)
 	{
-		img_1 = cv::imread(sift_imagefile1, CV_LOAD_IMAGE_COLOR);
-		img_2 = cv::imread(sift_imagefile2, CV_LOAD_IMAGE_COLOR);
+		img_1 = cv::imread(sift_imagefile1, cv::IMREAD_COLOR);
+		img_2 = cv::imread(sift_imagefile2, cv::IMREAD_COLOR);
 	}
 	if(FLAGS_opencv_feature)	// generate opencv sift feature from images
 	{
@@ -73,11 +73,11 @@ int main(int argc, char **argv)
 			return -1;
 		}
 
-		cv::SiftDescriptorExtractor cv_sift_extractor;
-		cv_sift_extractor.detect(img_1, key_points1);
-		cv_sift_extractor.compute(img_1, key_points1, desc1);
-		cv_sift_extractor.detect(img_2, key_points2);
-		cv_sift_extractor.compute(img_2, key_points2, desc2);
+		cv::Ptr<cv::SIFT> sift = cv::SIFT::create();
+		sift->detect(img_1, key_points1);
+		sift->compute(img_1, key_points1, desc1);
+		sift->detect(img_2, key_points2);
+		sift->compute(img_2, key_points2, desc2);
 		cout << "[sift_match_test] desc " << desc1.rows << " " << desc1.cols <<  " " << desc1.type() <<  endl;
 		cout << "[sift_match_test] desc " << desc2.rows << " " << desc2.cols << " " << desc2.type() << endl;
 		cout << "[sift_match_test] got " << key_points1.size() << " sift1 descriptors\n";

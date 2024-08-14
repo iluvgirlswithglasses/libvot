@@ -15,7 +15,7 @@ int main( int argc, char** argv )
     }
 
     Mat image;
-    image = imread(argv[1], CV_LOAD_IMAGE_COLOR);   // Read the file
+    image = imread(argv[1], cv::IMREAD_COLOR);   // Read the file
 
     if(! image.data )                              // Check for invalid input
     {

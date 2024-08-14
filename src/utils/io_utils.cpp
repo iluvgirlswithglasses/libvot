@@ -58,7 +58,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #if defined(__WIN32__) || defined(_MSC_VER)
 #include <excpt.h>
 #else
-#include <sys/sysctl.h>
+// #include <sys/sysctl.h>
+#include <sys/syscall.h>
 #endif
 
 #if defined(_MSC_VER)

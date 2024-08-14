@@ -36,4 +36,4 @@ add_subdirectory(graph)
 # the executable files
 add_subdirectory(examples)
 # benchmark related files
-add_subdirectory(benchmark)
+# add_subdirectory(benchmark)

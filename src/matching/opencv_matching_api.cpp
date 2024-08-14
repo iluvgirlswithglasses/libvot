@@ -130,8 +130,8 @@ bool SiftMatcherOpencv::ShowMatches(std::string imagefile1,
 		return false;
 
 	// read image error
-	img_[0] = cv::imread(imagefile1, CV_LOAD_IMAGE_COLOR);
-	img_[1] = cv::imread(imagefile2, CV_LOAD_IMAGE_COLOR);
+	img_[0] = cv::imread(imagefile1, cv::IMREAD_COLOR);
+	img_[1] = cv::imread(imagefile2, cv::IMREAD_COLOR);
 	if (img_[0].empty() || img_[1].empty())
 		return false;
 
